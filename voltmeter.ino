@@ -70,19 +70,19 @@ void loop() {
     dataArr[i] *= COEFGALV;
     //Serial.println("Voltage: " + String(i+1) + "-" + String(dataArr[i]));
     logData += String(dataArr[i]);
-    logData += ';';    
+    logData += "    ";    
     LCD.setCursor((i%4) * 5,int(i/4)); // ставим курсор на 1 символ первой строке
     LCD.print(dataArr[i]); // выводим напряжение на дисплей
     
   }
   Serial.println(logData);
-  File dataFile = SD.open("log.csv", FILE_WRITE);
+  File dataFile = SD.open("log.txt", FILE_WRITE);
     if (dataFile) {
     dataFile.println(logData);
     dataFile.close();
   }
   else {
-    Serial.println("error opening log.csv");
+    Serial.println("error opening log.txt");
   }
   delay(500);
   LCD.clear(); // очищаем экран дисплея
