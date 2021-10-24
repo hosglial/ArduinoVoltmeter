@@ -45,13 +45,16 @@ void setup() {
     analogWrite(pinArr[i], LOW);
   }
 
-    Serial.print("Initializing SD card...");
+   Serial.print("Initializing SD card...");
 
+  
   if (!SD.begin(chipSelect)) {
     Serial.println("initialization failed!");
-    while (1);
   }
-  Serial.println("initialization done.");
+  else {
+    Serial.println("initialization done.");  
+  }
+  
   
 }
 
