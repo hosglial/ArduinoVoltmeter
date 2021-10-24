@@ -1,7 +1,7 @@
 #include <String.h>
 #include <Wire.h> // библиотека для протокола I2C
 #include <LiquidCrystal_I2C.h> // библиотека для LCD 1602
-LiquidCrystal_I2C LCD(0x27,20,2); // присваиваем имя дисплею
+LiquidCrystal_I2C LCD(0x27,20,4); // присваиваем имя дисплею
 #include <SPI.h>                // Подключаем библиотеку SPI
 #include <SD.h>                 // Подключаем библиотеку SD
 #include <Time.h>
@@ -25,10 +25,9 @@ RTC_DS3231 rtc;
 
 void setup() {
   Serial.begin(9600);
-//  SdSetup();//SdCard
 
-    rtc.begin();
-    rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+  rtc.begin();
+  rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
   
   
   
@@ -60,7 +59,7 @@ void loop() {
   float dataArr[10];
   char date[10] = "hh:mm:ss";
 
-  String logData = String(rtc.now().toString(date)) + ";";
+  String logData = String(rtc.now().toString(date)) + "    ";
   for (int i = 0; i<10; i++) {
     dataArr[i] = 0;
     dataArr[i] = analogRead(pinArr[i]);
