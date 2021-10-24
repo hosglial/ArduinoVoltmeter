@@ -46,10 +46,10 @@ void setup() {
 
   
   if (!SD.begin(chipSelect)) {
-    Serial.println("initialization failed!");
+    Serial.println("Initialization failed!");
   }
   else {
-    Serial.println("initialization done.");
+    Serial.println("Initialization done.");
   }
   
   
