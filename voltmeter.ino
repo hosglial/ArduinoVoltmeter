@@ -45,14 +45,14 @@ void setup() {
     analogWrite(pinArr[i], LOW);
   }
 
-   Serial.print("Initializing SD card...");
+   LCD.print("Initializing SD card...")
 
   
   if (!SD.begin(chipSelect)) {
-    Serial.println("initialization failed!");
+    LCD.print("initialization failed!");
   }
   else {
-    Serial.println("initialization done.");  
+    LCD.print("initialization done.");  
   }
   
   
@@ -70,7 +70,7 @@ void loop() {
     dataArr[i] *= COEFGALV;
     //Serial.println("Voltage: " + String(i+1) + "-" + String(dataArr[i]));
     logData += String(dataArr[i]);
-    logData += "    ";    
+    logData += "    ";
     LCD.setCursor((i%4) * 5,int(i/4)); // ставим курсор на 1 символ первой строке
     LCD.print(dataArr[i]); // выводим напряжение на дисплей
     
