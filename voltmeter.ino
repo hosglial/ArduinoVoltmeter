@@ -5,8 +5,6 @@ LiquidCrystal_I2C LCD(0x27,20,2); // присваиваем имя диспле�
 #include <SPI.h>                // Подключаем библиотеку SPI
 #include <SD.h>                 // Подключаем библиотеку SD
 #include <Time.h>
-#include <TimeLib.h>
-
 #include <RTClib.h>
 
 
@@ -70,7 +68,7 @@ void loop() {
     dataArr[i] *= COEFGALV;
     //Serial.println("Voltage: " + String(i+1) + "-" + String(dataArr[i]));
     logData += String(dataArr[i]);
-    logData += ';';    
+    logData += '    ';    
     LCD.setCursor((i%4) * 5,int(i/4)); // ставим курсор на 1 символ первой строке
     LCD.print(dataArr[i]); // выводим напряжение на дисплей
     
