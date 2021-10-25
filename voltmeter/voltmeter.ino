@@ -57,7 +57,7 @@ void setup() {
 
 void loop() {
   float dataArr[10];
-  char date[10] = "hh:mm:ss";
+  char date[19] = "DD MMM YY hh:mm:ss";
 
   String logData = String(rtc.now().toString(date)) + "    ";
   LCD.print(rtc.now().toString(date));
@@ -85,48 +85,4 @@ void loop() {
   delay(500);
   LCD.clear(); // очищаем экран дисплея
 
-}
-
-
-void SdSetup() {
-//  while (!Serial) {;}
-//  Serial.print("Initializing SD card...");
-// 
-// if (!card.init(SPI_HALF_SPEED, chipSelect)) {
-//    Serial.println("initialization failed. Things to check:");
-//    Serial.println("* is a card inserted?");
-//    Serial.println("* is your wiring correct?");
-//    Serial.println("* did you change the chipSelect pin to match your shield or module?");
-//    return;
-//  } else {
-//    Serial.println("Wiring is correct and a card is present.");
-//  }
-// 
-//// Печатаем тип карты
-//  Serial.print("\nCard type: ");  
-//  switch (card.type()) {
-//    case SD_CARD_TYPE_SD1:
-//      Serial.println("SD1");
-//      break;
-//    case SD_CARD_TYPE_SD2:
-//      Serial.println("SD2");
-//      break;
-//    case SD_CARD_TYPE_SDHC:
-//      Serial.println("SDHC");
-//      break;
-//    default:
-//      Serial.println("Unknown");
-//  }
-// 
-//// Открытие карты 
-//  if (!volume.init(card)) {
-//    Serial.println("Could not find FAT16/FAT32 partition.\nMake sure you've formatted the card");    
-//  }
-//
-//  
-//// выводим тип и размер первого тома типа FAT
-//  uint32_t volumesize;
-//  Serial.print("\nVolume type is FAT");
-//  Serial.println(volume.fatType(), DEC);
-//  Serial.println();
 }
