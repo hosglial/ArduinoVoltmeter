@@ -1,0 +1,90 @@
+{
+  "uuid": "4e15cce686025f01fa8191bbc4b32551",
+  "path": "Offline/Sheet_2",
+  "name": "Sheet_2",
+  "content": "",
+  "created_at": "2022-03-20 18:16:00",
+  "updated_at": "2022-03-23 00:20:28",
+  "stick": "",
+  "documents": [
+    {
+      "uuid": "0d24cb2775e532eb671a54e57d3e2af6",
+      "title": "Sheet_1",
+      "description": "",
+      "docType": "1",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "506761a576fa430aa657125307e784af": 20,
+        "8af6d835f2624104963bcba3d0eff992": 10
+      },
+      "BOM": [
+        [
+          "Value",
+          "Quantity",
+          "Package",
+          "Components",
+          "CustomPara"
+        ],
+        [
+          "10uF",
+          20,
+          "C1206",
+          "C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,C14,C15,C16,C17,C18,C19,C20",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C513767",
+            "BOM_Manufacturer": "Samwha Capacitor",
+            "BOM_Manufacturer Part": "CS3216X7R106K250NRI",
+            "puuid": "7bdec8012728462a85919a4d0d033579",
+            "uuid": "506761a576fa430aa657125307e784af"
+          }
+        ],
+        [
+          "B0505S-1WR3_C2880021",
+          10,
+          "PWRM-TH_B0505S-1WR3",
+          "U1,U2,U3,U4,U5,U6,U7,U8,U9,U10",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C2880021",
+            "BOM_Manufacturer": "清远特斯拉(TESL*A)",
+            "BOM_Manufacturer Part": "B0505S-1WR3",
+            "puuid": "5dc1d4d6ebf24f7e96a7a44d3c484574",
+            "uuid": "8af6d835f2624104963bcba3d0eff992"
+          }
+        ]
+      ],
+      "updateTime": 1647791464,
+      "createTime": 1647789361,
+      "histories": [],
+      "created_at": "2022-03-20 18:16:01",
+      "updated_at": "2022-03-20 18:51:04"
+    },
+    {
+      "uuid": "a494e9bc01853161ff88b256d557fe08",
+      "puuid": "4e15cce686025f01fa8191bbc4b32551",
+      "title": "PCB_Sheet_2",
+      "filename": "PCB_Sheet_2.json",
+      "description": "",
+      "docType": "3",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "7bdec8012728462a85919a4d0d033579": 20,
+        "5dc1d4d6ebf24f7e96a7a44d3c484574": 10
+      },
+      "BOM": [],
+      "updateTime": 1647984028,
+      "createTime": 1647791536,
+      "histories": [],
+      "created_at": "2022-03-20 18:52:16",
+      "updated_at": "2022-03-23 00:20:28"
+    }
+  ],
+  "sort": [],
+  "title": "Sheet_2",
+  "foldername": "Sheet_2",
+  "schfilename": "Sheet_2.json",
+  "schfilemtime": 1647791464139
+}
