@@ -4,7 +4,6 @@
 LiquidCrystal_I2C LCD(0x27,20,4); // присваиваем имя дисплею
 #include <SPI.h>                // Подключаем библиотеку SPI
 #include <SD.h>                 // Подключаем библиотеку SD
-#include <Time.h>
 #include <RTClib.h>
 
 
@@ -23,14 +22,31 @@ void SdSetup();
 
 RTC_DS3231 rtc;
 
+String print_time(DateTime timestamp) {
+  char message[120];
+
+  int Year = timestamp.year();
+  int Month = timestamp.month();
+  int Day = timestamp.day();
+  int Hour = timestamp.hour();
+  int Minute = timestamp.minute();
+  int Second= timestamp.second();
+
+  sprintf(message, "%d-%d-%d %02d:%02d:%02d", Month,Day,Year,Hour,Minute,Second);
+  
+  return message;
+}
+
 void setup() {
   Serial.begin(9600);
 
   rtc.begin();
   rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
   
+
   
-  
+
+   
   LCD.init(); // инициализация дисплея
   LCD.backlight(); // включение подсветки
     
@@ -59,8 +75,11 @@ void loop() {
   float dataArr[10];
   char date[19] = "DD MMM YY hh:mm:ss";
 
-  String logData = String(rtc.now().toString(date)) + "    ";
-  LCD.print(rtc.now().toString(date));
+  DateTime n = rtc.now();
+   
+  String logData = String(print_time(n));
+//  String logData = String(rtc.now().toString(date)) + "    ";
+  LCD.print(n.toString(date));
   for (int i = 0; i<10; i++) {
     dataArr[i] = 0;
     dataArr[i] = analogRead(pinArr[i]);
@@ -82,7 +101,7 @@ void loop() {
   else {
     Serial.println("error opening log.txt");
   }
-  delay(500);
+  delay(1000);
   LCD.clear(); // очищаем экран дисплея
 
 }
