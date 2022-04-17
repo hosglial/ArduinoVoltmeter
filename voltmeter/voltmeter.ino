@@ -7,11 +7,11 @@
 #include <Adafruit_ADS1X15.h>
 
 
-#define EN 2
-#define S0 3
+#define EN 6
+#define S0 5
 #define S1 4
-#define S2 5
-#define S3 6
+#define S2 3
+#define S3 2
 
 
 Adafruit_ADS1115 ads;			  // Объект для работы с АЦП
@@ -20,7 +20,7 @@ Sd2Card card;                     // Указываем переменные SD
 SdVolume volume;                  // Указываем переменные SD
 SdFile root;                      // Указываем переменные SD
  
-const int chipSelect = 49;      //адрес sd карты
+const int chipSelect = 10;      //адрес sd карты
 
 RTC_DS3231 rtc;
 
@@ -108,6 +108,9 @@ void setup() {
     
   pinMode(22, OUTPUT);
   digitalWrite(22, LOW);
+
+  pinMode(10, OUTPUT);
+  digitalWrite(10, LOW);
 
    Serial.println("Initializing SD card...");
 
