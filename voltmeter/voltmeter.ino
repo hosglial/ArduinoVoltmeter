@@ -7,11 +7,11 @@
 #include <Adafruit_ADS1X15.h>
 
 
-#define EN 2
-#define S0 3
+#define EN 6
+#define S0 5
 #define S1 4
-#define S2 5
-#define S3 6
+#define S2 3
+#define S3 2
 
 
 Adafruit_ADS1115 ads;			  // Объект для работы с АЦП
@@ -20,7 +20,7 @@ Sd2Card card;                     // Указываем переменные SD
 SdVolume volume;                  // Указываем переменные SD
 SdFile root;                      // Указываем переменные SD
  
-const int chipSelect = 49;      //адрес sd карты
+const int chipSelect = 10;      //адрес sd карты
 
 RTC_DS3231 rtc;
 
@@ -82,6 +82,9 @@ void setup() {
 		digitalWrite(controlPin[i], LOW);		
 	}
 
+  LCD.init(); // инициализация дисплея
+  LCD.backlight(); // включение подсветки
+
 
   // Установка коэффициента усиления 2/3
   ads.setGain(GAIN_TWOTHIRDS);
@@ -96,18 +99,26 @@ void setup() {
 
   if (!ads.begin(0x4B)) {
     Serial.println("Failed to initialize ADS.");
+    LCD.print("ADS init fail       check connection");
     while (1);
+  }
+
+   File dataFile = SD.open("log.txt", FILE_WRITE);
+    if (!dataFile) {
+      LCD.print("SD card not found   check connection");
+      delay(1000);
+      LCD.clear();
   }
   
  
   rtc.begin(); // включение модуля реального времени
   rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));// настройка времени
-
-  LCD.init(); // инициализация дисплея
-  LCD.backlight(); // включение подсветки
     
   pinMode(22, OUTPUT);
   digitalWrite(22, LOW);
+
+  pinMode(10, OUTPUT);
+  digitalWrite(10, LOW);
 
    Serial.println("Initializing SD card...");
 
@@ -137,24 +148,26 @@ void loop() {
     changeMux(i);
     delay(50);
     dataArr[i] = ads.computeVolts(ads.readADC_Differential_0_1());
-    logData += "    ";
-    logData += String(dataArr[i]);
+    if (dataArr[i] < 0) 
+          logData += "      ";
+    else 
+          logData += "       ";
+    
+    logData += String(dataArr[i],2);
     LCD.setCursor((i%4) * 5,int(i/4)+1); // ставим курсор на 1 символ первой строке
-    LCD.print(dataArr[i]); // выводим напряжение на дисплей
+    if (dataArr[i] < 0)
+      LCD.print(dataArr[i]); // вывод на дисплей если напряжение меньше 0
+    else
+      LCD.print(dataArr[i]); // вывод на дисплей если напряжение больше 0
    }
 
    Serial.println(logData);    
 
   
-
-// Этот кусок пишет на карту, для тестов нахуй не нужен
   File dataFile = SD.open("log.txt", FILE_WRITE);
     if (dataFile) {
     dataFile.println(logData);
     dataFile.close();
-  }
-  else {
-    Serial.println("error opening log.txt");
   }
   delay(500);
   LCD.clear(); // очищаем экран дисплея
